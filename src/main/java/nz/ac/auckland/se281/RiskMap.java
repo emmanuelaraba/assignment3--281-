@@ -9,6 +9,10 @@ public class RiskMap {
     this.map = new HashMap<>();
   }
 
+  public void setAdjacencies(Country country, ArrayList<Country> adjacencies) {
+    map.put(country, adjacencies);
+  }
+
   public void addCountry(Country country) {
     map.putIfAbsent(country, new ArrayList<>());
   }
