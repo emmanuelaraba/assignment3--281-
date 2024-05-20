@@ -24,6 +24,15 @@ public class Country {
     return result;
   }
 
+  public int getTaxFees() {
+    return taxFees;
+  }
+
+  public void setTaxFees(int taxFees) {
+
+    this.taxFees = taxFees;
+  }
+
   /**
    * method to check if to countries are equal
    *
@@ -63,6 +72,7 @@ public class Country {
    */
   @Override
   public String toString() {
+
     return name + " => continent: " + continent + ", tax fees: " + taxFees;
   }
 }
