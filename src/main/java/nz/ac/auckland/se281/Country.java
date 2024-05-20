@@ -25,7 +25,7 @@ public class Country {
   }
 
   /**
-   * mehtod to check if to countries are equal
+   * method to check if to countries are equal
    *
    * @param obj the object to compare with
    * @return true if the countries are equal, false otherwise
@@ -54,5 +54,15 @@ public class Country {
       return false;
     }
     return true;
+  }
+
+  /**
+   * method to get the name of the country
+   *
+   * @return the name of the country, along witht the continent and the tax fees
+   */
+  @Override
+  public String toString() {
+    return name + " => continent: " + continent + ", tax fees: " + taxFees;
   }
 }
