@@ -15,6 +15,7 @@ public class MapEngine {
     List<String> countries = Utils.readCountries();
     List<String> adjacencies = Utils.readAdjacencies();
     // add code here to create your data structures
+
   }
 
   /** this method is invoked when the user run the command info-country. */

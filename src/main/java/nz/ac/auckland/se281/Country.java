@@ -3,9 +3,9 @@ package nz.ac.auckland.se281;
 public class Country {
   private String name;
   private String continent;
-  private double taxFees;
+  private int taxFees;
 
-  public Country(String name, String continent, double taxFees) {
+  public Country(String name, String continent, int taxFees) {
     this.name = name;
     this.continent = continent;
     this.taxFees = taxFees;
