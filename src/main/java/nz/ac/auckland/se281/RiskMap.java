@@ -3,22 +3,16 @@ package nz.ac.auckland.se281;
 import java.util.*;
 
 public class RiskMap {
-  private Map<Country, List<Country>> map;
+  private Set<Country> countrySet = new HashSet<>();
+  private Map<Country, Set<Country>> map;
 
   public RiskMap() {
     this.map = new HashMap<>();
   }
 
-  public Map<Country, List<Country>> getMap() {
-    return map;
-  }
-
-  public void setAdjacencies(Country country, ArrayList<Country> adjacencies) {
-    map.put(country, adjacencies);
-  }
-
   public void addCountry(Country country) {
-    map.put(country, new ArrayList<>());
+    countrySet.add(country);
+    map.putIfAbsent(country, new HashSet<>());
   }
 
   public void addAdjacency(Country country1, Country country2) {
@@ -45,7 +39,7 @@ public class RiskMap {
    * @param name the country we are looking for
    * @return the country object that shares the name we are looking for.
    */
-  public Country returnCountry(String name) {
+  public Country getCountry(String name) {
     for (Country country : map.keySet()) {
       if (country.getName().equals(name)) {
         return country;
@@ -54,13 +48,13 @@ public class RiskMap {
     return null;
   }
 
-  public void getCountries() {
-    for (Country country : map.keySet()) {
-      System.out.println(country.getName());
-    }
+  public Set<Country> getCountries() {
+    return countrySet;
   }
 
-  public int getNumCountries() {
-    return map.size();
+  public void getAdjacencies() {
+    for (Country country : map.keySet()) {
+      System.out.println(country.getName() + " " + map.get(country).size());
+    }
   }
 }
