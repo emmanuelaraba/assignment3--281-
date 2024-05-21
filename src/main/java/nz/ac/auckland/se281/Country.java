@@ -75,4 +75,8 @@ public class Country {
 
     return name + " => continent: " + continent + ", tax fees: " + taxFees;
   }
+
+  public String getName() {
+    return this.name;
+  }
 }

@@ -1,5 +1,6 @@
 package nz.ac.auckland.se281;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /** This class is the main entry point. */
@@ -13,27 +14,52 @@ public class MapEngine {
   /** invoked one time only when constructing the MapEngine class. */
   private void loadMap() {
     RiskMap map = new RiskMap();
-    List<String> countries = Utils.readCountries();
+    loadCountries();
     List<String> adjacencies = Utils.readAdjacencies();
-    // add code here to create your data structures
-    // making new country objects and adding them to the map
+    List<String> splitAdjacencies = new ArrayList<>();
+  }
+
+  /** method to loadCountries into Map */
+  private void loadCountries() {
+    List<String> countries = Utils.readCountries();
+    // Create a new list to store the split country names
+    List<String> splitCountries = new ArrayList<>();
+
     for (String country : countries) {
-      String[] countryData = country.split("\n");
-      Country newCountry =
-          new Country(countryData[0], countryData[1], Integer.parseInt(countryData[2]));
-      map.addCountry(newCountry);
+      String[] split =
+          country.split("\n+"); // Splitting by whitespace, adjust the regex as per your requirement
+      for (String part : split) {
+        splitCountries.add(part);
+      }
     }
 
-    // adding adjacencies to the map
-    for (String adjacency : adjacencies) {
-      String[] adjacencyData = adjacency.split(",");
-      // add code here
+    // Print the split country names
+    for (String splitCountry : splitCountries) {
+      String[] country = splitCountry.split(",");
+      Country newCountry = new Country(country[0], country[1], Integer.parseInt(country[2]));
     }
   }
 
   /** this method is invoked when the user run the command info-country. */
   public void showInfoCountry() {
-    // add code here
+    List<String> countries = Utils.readCountries();
+    // Create a new list to store the split country names
+    List<String> splitCountries = new ArrayList<>();
+
+    for (String country : countries) {
+      String[] split =
+          country.split("\n+"); // Splitting by whitespace, adjust the regex as per your requirement
+      for (String part : split) {
+        splitCountries.add(part);
+      }
+    }
+
+    // Print the split country names
+    for (String splitCountry : splitCountries) {
+      String[] country = splitCountry.split(",");
+      System.out.println(
+          "country:" + country[0] + " continent:" + country[1] + " tax:" + country[2]);
+    }
   }
 
   /** this method is invoked when the user run the command route. */

@@ -3,7 +3,7 @@ package nz.ac.auckland.se281;
 import java.util.*;
 
 public class RiskMap {
-  private Map<Country, ArrayList<Country>> map;
+  private Map<Country, List<Country>> map;
 
   public RiskMap() {
     this.map = new HashMap<>();
@@ -33,5 +33,20 @@ public class RiskMap {
   public void removeAdjacency(Country country1, Country country2) {
     map.get(country1).remove(country2);
     map.get(country2).remove(country1);
+  }
+
+  /**
+   * Retyrns the country object that shares the name we are looking for.
+   *
+   * @param name the country we are looking for
+   * @return the country object that shares the name we are looking for.
+   */
+  public Country returnCountry(String name) {
+    for (Country country : map.keySet()) {
+      if (country.getName().equals(name)) {
+        return country;
+      }
+    }
+    return null;
   }
 }
