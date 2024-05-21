@@ -65,6 +65,10 @@ public class Country {
     return true;
   }
 
+  public String getContinent() {
+    return continent;
+  }
+
   /**
    * method to get the name of the country
    *
