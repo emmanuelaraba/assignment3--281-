@@ -9,12 +9,16 @@ public class RiskMap {
     this.map = new HashMap<>();
   }
 
+  public Map<Country, List<Country>> getMap() {
+    return map;
+  }
+
   public void setAdjacencies(Country country, ArrayList<Country> adjacencies) {
     map.put(country, adjacencies);
   }
 
   public void addCountry(Country country) {
-    map.putIfAbsent(country, new ArrayList<>());
+    map.put(country, new ArrayList<>());
   }
 
   public void addAdjacency(Country country1, Country country2) {
@@ -36,7 +40,7 @@ public class RiskMap {
   }
 
   /**
-   * Retyrns the country object that shares the name we are looking for.
+   * Returns the country object that shares the name we are looking for.
    *
    * @param name the country we are looking for
    * @return the country object that shares the name we are looking for.
@@ -48,5 +52,15 @@ public class RiskMap {
       }
     }
     return null;
+  }
+
+  public void getCountries() {
+    for (Country country : map.keySet()) {
+      System.out.println(country.getName());
+    }
+  }
+
+  public int getNumCountries() {
+    return map.size();
   }
 }
