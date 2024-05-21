@@ -39,13 +39,13 @@ public class RiskMap {
    * @param name the country we are looking for
    * @return the country object that shares the name we are looking for.
    */
-  public Country getCountry(String name) {
-    for (Country country : map.keySet()) {
+  public Country getCountry(String name) throws InvalidCountryName {
+    for (Country country : countrySet) {
       if (country.getName().equals(name)) {
         return country;
       }
     }
-    return null;
+    throw new InvalidCountryName("Country not found");
   }
 
   public Set<Country> getCountries() {
