@@ -14,10 +14,13 @@ public class MapEngine {
 
   /** invoked one time only when constructing the MapEngine class. */
   private void loadMap() {
+    // loading the countries and the adjacencies into the countryMap
+
     loadCountries();
     loadAdjacencies();
   }
 
+  /** method to load all the countries into the map */
   private void loadCountries() {
     List<String> countries = Utils.readCountries();
     List<String> splitCountries = new ArrayList<>();
@@ -39,6 +42,7 @@ public class MapEngine {
     }
   }
 
+  /** method to load all the adjacencies into the map */
   private void loadAdjacencies() {
     List<String> adjacencies = Utils.readAdjacencies();
 
@@ -46,15 +50,38 @@ public class MapEngine {
     for (String adjEntry : adjacencies) {
       String[] adjElements = adjEntry.split(",");
       for (int i = 1; i < adjElements.length; i++) {
-        countryMap.addAdjacency(
-            countryMap.getCountry(adjElements[0]), countryMap.getCountry(adjElements[i]));
+        try {
+          countryMap.addAdjacency(
+              countryMap.getCountry(adjElements[0]), countryMap.getCountry(adjElements[i]));
+        } catch (InvalidCountryName e) {
+          break;
+        }
       }
     }
   }
 
+  public String captilizeFirstLetterOfEachWord(String input) {
+    return Utils.capitalizeFirstLetterOfEachWord(input);
+  }
+
   /** this method is invoked when the user run the command info-country. */
   public void showInfoCountry() {
-    countryMap.getAdjacencies();
+
+    boolean validCountry = false;
+    while (!validCountry) {
+      MessageCli.INSERT_COUNTRY.printMessage();
+      String countryInput = captilizeFirstLetterOfEachWord(Utils.scanner.nextLine());
+      try {
+        Country newCountry = countryMap.getCountry(countryInput);
+        MessageCli.COUNTRY_INFO.printMessage(
+            newCountry.getName(),
+            newCountry.getContinent(),
+            Integer.toString(newCountry.getTaxFees()));
+        validCountry = true;
+      } catch (InvalidCountryName e) {
+        MessageCli.INVALID_COUNTRY.printMessage(countryInput);
+      }
+    }
   }
 
   /** this method is invoked when the user run the command route. */
