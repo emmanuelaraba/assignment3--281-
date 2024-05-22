@@ -3,8 +3,8 @@ package nz.ac.auckland.se281;
 import java.util.*;
 
 public class RiskMap {
-  private Set<Country> countrySet = new HashSet<>();
-  private Map<Country, Set<Country>> map;
+  private Set<Country> countrySet = new LinkedHashSet<>();
+  private Map<Country, LinkedHashSet<Country>> map;
 
   public RiskMap() {
     this.map = new HashMap<>();
@@ -12,7 +12,7 @@ public class RiskMap {
 
   public void addCountry(Country country) {
     countrySet.add(country);
-    map.putIfAbsent(country, new HashSet<>());
+    map.putIfAbsent(country, new LinkedHashSet<>());
   }
 
   public void addAdjacency(Country country1, Country country2) {
@@ -58,37 +58,43 @@ public class RiskMap {
     }
   }
 
-  public List<Country> findShortestPath(Country country1, Country country2) {
+  public List<Country> findShortestPath(Country origin, Country destination) {
     Queue<Country> queue = new LinkedList<>();
+    queue.add(origin);
+
     Map<Country, Country> parent = new HashMap<>();
-    Set<Country> visited = new HashSet<>();
-    queue.add(country1);
-    visited.add(country1);
+    parent.put(origin, null);
+
+    Set<Country> visited = new LinkedHashSet<>();
+    visited.add(origin);
+
     // BFS traversal
     while (!queue.isEmpty()) {
       Country current = queue.poll();
-      if (current.equals(country2)) {
-        // stopping early if we reach the destination node
-        break;
-      }
       // going through all the adjacencies for the current country
       for (Country neighbour : map.get(current)) {
         // if it hasnt been visited yet
         if (!visited.contains(neighbour)) {
-          queue.add(neighbour);
           visited.add(neighbour);
+          queue.add(neighbour);
           // put the current node and its previous node in the parent map
           parent.put(neighbour, current);
         }
       }
     }
     // reconstructing the path
-    List<Country> path = new ArrayList<>();
-    Country current = country2;
+    Country current = destination;
+    List<Country> path = new ArrayList<Country>();
+    // starting from the destination and going back to the origin
     while (current != null) {
       path.add(current);
       current = parent.get(current);
+      if (current != origin && current.equals(origin)) {
+        path.add(current);
+        break;
+      }
     }
+    path.add(origin);
     Collections.reverse(path);
     return path;
   }

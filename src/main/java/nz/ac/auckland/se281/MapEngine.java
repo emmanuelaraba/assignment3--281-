@@ -1,6 +1,7 @@
 package nz.ac.auckland.se281;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /** This class is the main entry point. */
@@ -85,16 +86,29 @@ public class MapEngine {
 
   /** this method is invoked when the user run the command route. */
   public void showRoute() {
-
+    MessageCli.INSERT_SOURCE.printMessage();
+    String originString = captilizeFirstLetterOfEachWord(Utils.scanner.nextLine());
+    MessageCli.INSERT_DESTINATION.printMessage();
+    String destinationString = captilizeFirstLetterOfEachWord(Utils.scanner.nextLine());
     try {
-      for (Country country :
-          countryMap.findShortestPath(
-              countryMap.getCountry("Afghanistan"), countryMap.getCountry("Argentina"))) {
-        System.out.println(country.getName());
-      }
+      Country origin = countryMap.getCountry(originString);
+      Country destination = countryMap.getCountry(destinationString);
+      MessageCli.ROUTE_INFO.printMessage(
+          Arrays.toString(countryMap.findShortestPath(origin, destination).toArray()));
 
     } catch (InvalidCountryName e) {
-      System.out.println("Wrong");
+      MessageCli.INVALID_COUNTRY.printMessage(e.getMessage());
     }
+
+    //    try {
+    //      for (Country country :
+    //          countryMap.findShortestPath(
+    //              countryMap.getCountry("Great Britain"), countryMap.getCountry("Eastern
+    // Australia"))) {
+    //        System.out.println(country.getName());
+    //      }
+    //    } catch (InvalidCountryName e) {
+    //      System.out.println("Wrong");
+    //    }
   }
 }

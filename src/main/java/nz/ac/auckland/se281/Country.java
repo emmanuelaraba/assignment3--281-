@@ -77,7 +77,7 @@ public class Country {
   @Override
   public String toString() {
 
-    return name + " => continent: " + continent + ", tax fees: " + taxFees;
+    return name;
   }
 
   public String getName() {
