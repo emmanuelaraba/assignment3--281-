@@ -15,7 +15,6 @@ public class MapEngine {
   /** invoked one time only when constructing the MapEngine class. */
   private void loadMap() {
     // loading the countries and the adjacencies into the countryMap
-
     loadCountries();
     loadAdjacencies();
   }
@@ -85,5 +84,17 @@ public class MapEngine {
   }
 
   /** this method is invoked when the user run the command route. */
-  public void showRoute() {}
+  public void showRoute() {
+
+    try {
+      for (Country country :
+          countryMap.findShortestPath(
+              countryMap.getCountry("Afghanistan"), countryMap.getCountry("Argentina"))) {
+        System.out.println(country.getName());
+      }
+
+    } catch (InvalidCountryName e) {
+      System.out.println("Wrong");
+    }
+  }
 }

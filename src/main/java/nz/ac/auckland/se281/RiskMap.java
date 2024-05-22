@@ -57,4 +57,39 @@ public class RiskMap {
       System.out.println(country.getName() + " " + map.get(country).size());
     }
   }
+
+  public List<Country> findShortestPath(Country country1, Country country2) {
+    Queue<Country> queue = new LinkedList<>();
+    Map<Country, Country> parent = new HashMap<>();
+    Set<Country> visited = new HashSet<>();
+    queue.add(country1);
+    visited.add(country1);
+    // BFS traversal
+    while (!queue.isEmpty()) {
+      Country current = queue.poll();
+      if (current.equals(country2)) {
+        // stopping early if we reach the destination node
+        break;
+      }
+      // going through all the adjacencies for the current country
+      for (Country neighbour : map.get(current)) {
+        // if it hasnt been visited yet
+        if (!visited.contains(neighbour)) {
+          queue.add(neighbour);
+          visited.add(neighbour);
+          // put the current node and its previous node in the parent map
+          parent.put(neighbour, current);
+        }
+      }
+    }
+    // reconstructing the path
+    List<Country> path = new ArrayList<>();
+    Country current = country2;
+    while (current != null) {
+      path.add(current);
+      current = parent.get(current);
+    }
+    Collections.reverse(path);
+    return path;
+  }
 }
