@@ -121,8 +121,15 @@ public class MapEngine {
     List<String> continentPath = countryMap.getContinentList(path);
     String continentPathString = Arrays.toString(continentPath.toArray());
     String taxTotal = Integer.toString(countryMap.getTaxTotal(path));
-    MessageCli.ROUTE_INFO.printMessage(pathString);
+
+    if (path.size() > 1) {
+      MessageCli.ROUTE_INFO.printMessage(pathString);
+    }
     MessageCli.CONTINENT_INFO.printMessage(continentPathString);
-    MessageCli.TAX_INFO.printMessage(taxTotal);
+    if (taxTotal.equals("0")) {
+      MessageCli.NO_CROSSBORDER_TRAVEL.printMessage();
+    } else {
+      MessageCli.TAX_INFO.printMessage(taxTotal);
+    }
   }
 }

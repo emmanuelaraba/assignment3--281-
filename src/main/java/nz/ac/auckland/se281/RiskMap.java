@@ -19,17 +19,6 @@ public class RiskMap {
     map.get(country1).add(country2);
   }
 
-  public void removeCountry(Country country) {
-    map.remove(country);
-    // iterating through the map to remove the country from all the adjacency lists
-    map.forEach((key, value) -> value.remove(country));
-  }
-
-  public void removeAdjacency(Country country1, Country country2) {
-    map.get(country1).remove(country2);
-    map.get(country2).remove(country1);
-  }
-
   public List<String> getContinentList(List<Country> countries) {
     List<String> continentsList = new ArrayList<>();
     Set<String> continentsSet = new LinkedHashSet<>();
@@ -62,16 +51,6 @@ public class RiskMap {
       }
     }
     throw new InvalidCountryName("Country not found");
-  }
-
-  public Set<Country> getCountries() {
-    return countrySet;
-  }
-
-  public void getAdjacencies() {
-    for (Country country : map.keySet()) {
-      System.out.println(country.getName() + " " + map.get(country).size());
-    }
   }
 
   public List<Country> findShortestPath(Country origin, Country destination) {
