@@ -112,7 +112,7 @@ public class MapEngine {
         validDestination = true;
       } catch (InvalidCountryName e) {
         MessageCli.INVALID_COUNTRY.printMessage(destinationString);
-        destinationString = captilizeFirstLetterOfEachWord(Utils.scanner.nextLine());
+        MessageCli.INSERT_DESTINATION.printMessage();
       }
     }
 

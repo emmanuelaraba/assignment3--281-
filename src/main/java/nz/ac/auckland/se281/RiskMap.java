@@ -19,7 +19,6 @@ public class RiskMap {
     addCountry(country1);
     addCountry(country2);
     map.get(country1).add(country2);
-    map.get(country2).add(country1);
   }
 
   public void removeCountry(Country country) {
