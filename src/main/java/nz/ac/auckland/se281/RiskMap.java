@@ -89,12 +89,7 @@ public class RiskMap {
     while (current != null) {
       path.add(current);
       current = parent.get(current);
-      if (current != origin && current.equals(origin)) {
-        path.add(current);
-        break;
-      }
     }
-    path.add(origin);
     Collections.reverse(path);
     return path;
   }
