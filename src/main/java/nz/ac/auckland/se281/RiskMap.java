@@ -16,8 +16,6 @@ public class RiskMap {
   }
 
   public void addAdjacency(Country country1, Country country2) {
-    addCountry(country1);
-    addCountry(country2);
     map.get(country1).add(country2);
   }
 
@@ -30,6 +28,17 @@ public class RiskMap {
   public void removeAdjacency(Country country1, Country country2) {
     map.get(country1).remove(country2);
     map.get(country2).remove(country1);
+  }
+
+  public List<String> getContinentList(List<Country> countries) {
+    List<String> continentsList = new ArrayList<>();
+    Set<String> continentsSet = new LinkedHashSet<>();
+    for (Country country : countries) {
+      String continent = country.getContinent();
+      continentsSet.add(continent);
+    }
+    continentsList.addAll(continentsSet);
+    return continentsList;
   }
 
   /**

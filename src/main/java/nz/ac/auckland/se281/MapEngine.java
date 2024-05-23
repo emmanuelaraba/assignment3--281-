@@ -116,7 +116,11 @@ public class MapEngine {
       }
     }
 
-    String path = Arrays.toString(countryMap.findShortestPath(origin, destination).toArray());
-    MessageCli.ROUTE_INFO.printMessage(path);
+    List<Country> path = countryMap.findShortestPath(origin, destination);
+    String pathString = Arrays.toString(path.toArray());
+    List<String> continentPath = countryMap.getContinentList(path);
+    String continentPathString = Arrays.toString(continentPath.toArray());
+    MessageCli.ROUTE_INFO.printMessage(pathString);
+    MessageCli.CONTINENT_INFO.printMessage(continentPathString);
   }
 }
