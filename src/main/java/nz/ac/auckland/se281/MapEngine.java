@@ -20,7 +20,7 @@ public class MapEngine {
     loadAdjacencies();
   }
 
-  /** method to load all the countries into the map */
+  /** method to load all the countries into the map. */
   private void loadCountries() {
     List<String> countries = Utils.readCountries();
     List<String> splitCountries = new ArrayList<>();
@@ -42,7 +42,7 @@ public class MapEngine {
     }
   }
 
-  /** method to load all the adjacencies into the map */
+  /** method to load all the adjacencies into the map. */
   private void loadAdjacencies() {
     List<String> adjacencies = Utils.readAdjacencies();
 
@@ -60,6 +60,12 @@ public class MapEngine {
     }
   }
 
+  /**
+   * method to capitalize the first letter of each word
+   *
+   * @param input
+   * @return the string with the first letter of each word capitalized
+   */
   public String captilizeFirstLetterOfEachWord(String input) {
     return Utils.capitalizeFirstLetterOfEachWord(input);
   }
@@ -86,9 +92,12 @@ public class MapEngine {
 
   /** this method is invoked when the user run the command route. */
   public void showRoute() {
+    // insert the source and destination countries
     Country origin = null;
     boolean validOrgin = false;
-    String originString = "";
+    // making corresponding string to country object
+    String originString;
+    // checking if the country is valid
     while (!validOrgin) {
       MessageCli.INSERT_SOURCE.printMessage();
       originString = captilizeFirstLetterOfEachWord(Utils.scanner.nextLine());
@@ -102,7 +111,7 @@ public class MapEngine {
     }
 
     Country destination = null;
-    String destinationString = "";
+    String destinationString;
     boolean validDestination = false;
     while (!validDestination) {
       MessageCli.INSERT_DESTINATION.printMessage();

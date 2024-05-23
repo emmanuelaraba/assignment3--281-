@@ -1,7 +1,16 @@
 package nz.ac.auckland.se281;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.LinkedHashSet;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
+import java.util.Queue;
+import java.util.Set;
 
+/** This class represents the map of the Risk game. */
 public class RiskMap {
   private Set<Country> countrySet = new LinkedHashSet<>();
   private Map<Country, LinkedHashSet<Country>> map;
@@ -10,15 +19,34 @@ public class RiskMap {
     this.map = new HashMap<>();
   }
 
+  /**
+   * Adds a country to the map.
+   *
+   * @param country
+   */
   public void addCountry(Country country) {
+    // adds country if absent in the list
+
     countrySet.add(country);
     map.putIfAbsent(country, new LinkedHashSet<>());
   }
 
+  /**
+   * Adds an adjacency between two countries.
+   *
+   * @param country1 the first country
+   * @param country2 the second country
+   */
   public void addAdjacency(Country country1, Country country2) {
     map.get(country1).add(country2);
   }
 
+  /**
+   * Returns the list of continents traversed in a given list
+   *
+   * @param countries
+   * @return the list of continents traversed
+   */
   public List<String> getContinentList(List<Country> countries) {
     List<String> continentsList = new ArrayList<>();
     Set<String> continentsSet = new LinkedHashSet<>();
@@ -30,6 +58,12 @@ public class RiskMap {
     return continentsList;
   }
 
+  /**
+   * Returns the total tax fees of the countries in the list.
+   *
+   * @param countries
+   * @return the total tax fees of the countries
+   */
   public int getTaxTotal(List<Country> countries) {
     int taxTotal = 0;
     for (int i = 1; i < countries.size(); i++) {
