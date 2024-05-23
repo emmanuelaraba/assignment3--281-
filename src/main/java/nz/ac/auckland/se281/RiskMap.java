@@ -22,7 +22,7 @@ public class RiskMap {
   /**
    * Adds a country to the map.
    *
-   * @param country
+   * @param country the country to add
    */
   public void addCountry(Country country) {
     // adds country if absent in the list
@@ -42,9 +42,9 @@ public class RiskMap {
   }
 
   /**
-   * Returns the list of continents traversed in a given list
+   * Returns the list of continents traversed in a given list.
    *
-   * @param countries
+   * @param countries the list of countries
    * @return the list of continents traversed
    */
   public List<String> getContinentList(List<Country> countries) {
@@ -61,7 +61,7 @@ public class RiskMap {
   /**
    * Returns the total tax fees of the countries in the list.
    *
-   * @param countries
+   * @param countries the list of countries
    * @return the total tax fees of the countries
    */
   public int getTaxTotal(List<Country> countries) {
@@ -87,6 +87,13 @@ public class RiskMap {
     throw new InvalidCountryName("Country not found");
   }
 
+  /**
+   * Returns the shortest path between two countries.
+   *
+   * @param origin the origin country
+   * @param destination the destination country
+   * @return the shortest path between two countries
+   */
   public List<Country> findShortestPath(Country origin, Country destination) {
     Queue<Country> queue = new LinkedList<>();
     queue.add(origin);

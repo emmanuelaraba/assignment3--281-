@@ -61,10 +61,10 @@ public class MapEngine {
   }
 
   /**
-   * method to capitalize the first letter of each word
+   * method to capitalize the first letter of each word.
    *
-   * @param input
-   * @return the string with the first letter of each word capitalized
+   * @param input the string to capitalize.
+   * @return the string with the first letter of each word capitalized.
    */
   public String captilizeFirstLetterOfEachWord(String input) {
     return Utils.capitalizeFirstLetterOfEachWord(input);

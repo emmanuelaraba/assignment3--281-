@@ -1,17 +1,17 @@
 package nz.ac.auckland.se281;
 
-/** This class represents a country in the Risk game */
+/** This class represents a country in the Risk game. */
 public class Country {
   private String name;
   private String continent;
   private int taxFees;
 
   /**
-   * Constructor for the country class
+   * Constructor for the country class.
    *
-   * @param name the name of the country
-   * @param continent the continent of the country
-   * @param taxFees the tax fees of the country
+   * @param name the name of the country.
+   * @param continent the continent of the country.
+   * @param taxFees the tax fees of the country.
    */
   public Country(String name, String continent, int taxFees) {
     this.name = name;
@@ -20,9 +20,9 @@ public class Country {
   }
 
   /**
-   * method to calculate the hash code of the country
+   * method to calculate the hash code of the country.
    *
-   * @return the hash code of the country
+   * @return the hash code of the country.
    */
   @Override
   public int hashCode() {
@@ -83,9 +83,9 @@ public class Country {
   }
 
   /**
-   * method to get the name of the country
+   * method to get the name of the country.
    *
-   * @return the name of the country, along witht the continent and the tax fees
+   * @return the name of the country.
    */
   @Override
   public String toString() {
@@ -94,9 +94,9 @@ public class Country {
   }
 
   /**
-   * method to get the name of the country
+   * method to get the name of the country.
    *
-   * @return the name of the country
+   * @return the name of the country.
    */
   public String getName() {
     return this.name;
