@@ -6,7 +6,7 @@ import java.util.List;
 
 /** This class is the main entry point. */
 public class MapEngine {
-  private RiskMap countryMap = new RiskMap();
+  private final RiskMap countryMap = new RiskMap();
 
   public MapEngine() {
     // add other code here if you want
@@ -29,9 +29,7 @@ public class MapEngine {
     for (String country : countries) {
       String[] split =
           country.split("\n+"); // Splitting by whitespace, adjust the regex as per your requirement
-      for (String part : split) {
-        splitCountries.add(part);
-      }
+      splitCountries.addAll(Arrays.asList(split));
     }
 
     // add the split countries to the map
@@ -94,16 +92,16 @@ public class MapEngine {
   public void showRoute() {
     // insert the source and destination countries
     Country origin = null;
-    boolean validOrgin = false;
+    boolean validOrigin = false;
     // making corresponding string to country object
     String originString;
     // checking if the country is valid
-    while (!validOrgin) {
+    while (!validOrigin) {
       MessageCli.INSERT_SOURCE.printMessage();
       originString = captilizeFirstLetterOfEachWord(Utils.scanner.nextLine());
       try {
         origin = countryMap.getCountry(originString);
-        validOrgin = true;
+        validOrigin = true;
       } catch (InvalidCountryName e) {
         MessageCli.INVALID_COUNTRY.printMessage(originString);
         MessageCli.INSERT_SOURCE.printMessage();

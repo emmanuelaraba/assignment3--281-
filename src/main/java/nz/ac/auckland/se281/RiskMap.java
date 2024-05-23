@@ -12,8 +12,8 @@ import java.util.Set;
 
 /** This class represents the map of the Risk game. */
 public class RiskMap {
-  private Set<Country> countrySet = new LinkedHashSet<>();
-  private Map<Country, LinkedHashSet<Country>> map;
+  private final Set<Country> countrySet = new LinkedHashSet<>();
+  private final Map<Country, LinkedHashSet<Country>> map;
 
   public RiskMap() {
     this.map = new HashMap<>();
@@ -48,14 +48,12 @@ public class RiskMap {
    * @return the list of continents traversed
    */
   public List<String> getContinentList(List<Country> countries) {
-    List<String> continentsList = new ArrayList<>();
     Set<String> continentsSet = new LinkedHashSet<>();
     for (Country country : countries) {
       String continent = country.getContinent();
       continentsSet.add(continent);
     }
-    continentsList.addAll(continentsSet);
-    return continentsList;
+    return new ArrayList<>(continentsSet);
   }
 
   /**
@@ -109,7 +107,7 @@ public class RiskMap {
       Country current = queue.poll();
       // going through all the adjacencies for the current country
       for (Country neighbour : map.get(current)) {
-        // if it hasnt been visited yet
+        // if it hasn't been visited yet
         if (!visited.contains(neighbour)) {
           visited.add(neighbour);
           queue.add(neighbour);
@@ -120,7 +118,7 @@ public class RiskMap {
     }
     // reconstructing the path
     Country current = destination;
-    List<Country> path = new ArrayList<Country>();
+    List<Country> path = new ArrayList<>();
     // starting from the destination and going back to the origin
     while (current != null) {
       path.add(current);

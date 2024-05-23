@@ -2,9 +2,9 @@ package nz.ac.auckland.se281;
 
 /** This class represents a country in the Risk game. */
 public class Country {
-  private String name;
-  private String continent;
-  private int taxFees;
+  private final String name;
+  private final String continent;
+  private final int taxFees;
 
   /**
    * Constructor for the country class.
@@ -64,13 +64,8 @@ public class Country {
     Country other = (Country) obj;
 
     if (continent == null) {
-      if (other.continent != null) {
-        return false;
-      }
-    } else if (!continent.equals(other.continent)) {
-      return false;
-    }
-    return true;
+      return other.continent == null;
+    } else return continent.equals(other.continent);
   }
 
   /**
