@@ -41,6 +41,14 @@ public class RiskMap {
     return continentsList;
   }
 
+  public int getTaxTotal(List<Country> countries) {
+    int taxTotal = 0;
+    for (int i = 1; i < countries.size(); i++) {
+      taxTotal += countries.get(i).getTaxFees();
+    }
+    return taxTotal;
+  }
+
   /**
    * Returns the country object that shares the name we are looking for.
    *

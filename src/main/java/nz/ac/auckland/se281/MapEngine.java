@@ -120,7 +120,9 @@ public class MapEngine {
     String pathString = Arrays.toString(path.toArray());
     List<String> continentPath = countryMap.getContinentList(path);
     String continentPathString = Arrays.toString(continentPath.toArray());
+    String taxTotal = Integer.toString(countryMap.getTaxTotal(path));
     MessageCli.ROUTE_INFO.printMessage(pathString);
     MessageCli.CONTINENT_INFO.printMessage(continentPathString);
+    MessageCli.TAX_INFO.printMessage(taxTotal);
   }
 }
