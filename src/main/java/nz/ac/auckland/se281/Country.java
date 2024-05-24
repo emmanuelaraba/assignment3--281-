@@ -65,7 +65,9 @@ public class Country {
 
     if (continent == null) {
       return other.continent == null;
-    } else return continent.equals(other.continent);
+    } else {
+      return continent.equals(other.continent);
+    }
   }
 
   /**

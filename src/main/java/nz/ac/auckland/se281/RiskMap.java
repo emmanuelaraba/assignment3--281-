@@ -118,7 +118,7 @@ public class RiskMap {
     }
     // reconstructing the path
     Country current = destination;
-    List<Country> path = new ArrayList<>();
+    List<Country> path = new LinkedList<>();
     // starting from the destination and going back to the origin
     while (current != null) {
       path.add(current);
